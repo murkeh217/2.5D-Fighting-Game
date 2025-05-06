@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -10,7 +9,8 @@ public class EnemyController : MonoBehaviour
     private float distance;
     public Transform target;
 
-    private float moveAcceleration = 10f;
+    private float moveSpeed = 2f;  // Adjust this to make the enemy slower
+    private bool isAttacking = false;  // To prevent multiple attacks at once
 
     Rigidbody rb;
 
@@ -23,110 +23,86 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator DelayAttack()
     {
-        yield return new WaitForSecondsRealtime(30f);
-        anim.Play(bpl);
-        anim.Play(bpr);
+        // Wait for the attack animation to complete before returning to movement
+        yield return new WaitForSeconds(1f);  // Adjust this value to match your attack animation length
+        isAttacking = false;  // Allow the enemy to move back
     }
 
     void Start()
     {
-        anim.updateMode = AnimatorUpdateMode.AnimatePhysics;
-
+        anim.updateMode = AnimatorUpdateMode.Fixed;
         anim = GetComponent<Animator>();
-
         rb = GetComponent<Rigidbody>();
-
 
         anim.SetInteger(bpl, 0);
         anim.SetInteger(bpr, 1);
         anim.SetInteger(hpl, 2);
         anim.SetInteger(hpr, 3);
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        //lock on code
-        distance = Vector3.Distance(transform.position, target.transform.position);
+        distance = Vector3.Distance(transform.position, target.position);
 
-        if (distance < 4 && distance > 2)
+        if (distance < 4 && distance > 2 && !isAttacking)
         {
             var targetPosition = target.position;
             targetPosition.y = transform.position.y;
             transform.LookAt(targetPosition);
-            
-            //move
+
+            // Move towards the target at the reduced speed
             horizontal = 0.3f;
             anim.SetFloat("horizontal", horizontal);
-            rb.velocity = Vector3.MoveTowards(rb.velocity, Vector3.right * horizontal * Time.deltaTime, moveAcceleration * Time.deltaTime);
-            
-
+            rb.linearVelocity = Vector3.MoveTowards(rb.linearVelocity, Vector3.right * horizontal * moveSpeed * Time.deltaTime, moveSpeed * Time.deltaTime);
         }
 
-        else if (distance < 1)
+        else if (distance < 1 && !isAttacking)
         {
-            //anim.Play(bpl);
+            // Start attack sequence
+            isAttacking = true;
             StartCoroutine(DelayAttack());
-            anim.StopPlayback();
+            ComboAttack();  // Initiate the combo attack logic
         }
-    }
-
-    void FixedUpdate() 
-    {
-
     }
 
     void ComboAttack()
     {
-        //if (distance < 2)
-        //{
-            switch (Random.Range(0, 4))
-            {
-                case 1:
-                    StartCoroutine(DelayAttack());
-
-                    anim.Play(bpl);
-                    break;
-                case 2:
-                    StartCoroutine(DelayAttack());
-
-                    anim.Play(bpr);
-                    break;
-                case 3:
-                    StartCoroutine(DelayAttack());
-
-                    anim.Play(hpl);
-                    break;
-                case 4:
-                    StartCoroutine(DelayAttack());
-
-                    anim.Play(hpr);
-                    break;
-
-                case 0:
-                    horizontal = -0.3f;
-                    anim.SetFloat("horizontal", horizontal);
-                    rb.velocity = Vector3.MoveTowards(rb.velocity, Vector3.right * horizontal * Time.deltaTime, moveAcceleration * Time.deltaTime);
-                    break;
-            }
-        //}
+        // Attack combo logic
+        int attackChoice = Random.Range(0, 4);
+        switch (attackChoice)
+        {
+            case 1:
+                anim.Play(bpl);
+                break;
+            case 2:
+                anim.Play(bpr);
+                break;
+            case 3:
+                anim.Play(hpl);
+                break;
+            case 4:
+                anim.Play(hpr);
+                break;
+            case 0:
+                horizontal = -0.3f;
+                anim.SetFloat("horizontal", horizontal);
+                rb.linearVelocity = Vector3.MoveTowards(rb.linearVelocity, Vector3.right * horizontal * moveSpeed * Time.deltaTime, moveSpeed * Time.deltaTime);
+                break;
+        }
     }
 
     void OnTriggerEnter(Collider collider)
     {
+        // Reset movement on trigger enter
         horizontal = 0;
         anim.SetFloat("horizontal", horizontal);
-        rb.velocity = Vector3.MoveTowards(rb.velocity, Vector3.right * horizontal * Time.deltaTime, moveAcceleration * Time.deltaTime);
-
-        //if (collider.CompareTag("Player"))
-        //{
-        
-        //}
+        rb.linearVelocity = Vector3.MoveTowards(rb.linearVelocity, Vector3.right * horizontal * moveSpeed * Time.deltaTime, moveSpeed * Time.deltaTime);
     }
+
     void OnTriggerExit(Collider collider)
     {
-       anim.StopPlayback();
+        // Stop animation and reset state when exiting trigger
+        anim.StopPlayback();
     }
 }

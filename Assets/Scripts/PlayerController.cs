@@ -8,31 +8,24 @@ public class PlayerController : MonoBehaviour
     public static PlayerController playerController;
 
     public Animator anim;
-    private float moveAcceleration = 10f;
-
+    public float moveSpeed = 5f;     // Set this higher to make player faster
     public float jumpHeight;
 
-    private float distance;
     public Transform target;
+    private float distance;
 
-    Rigidbody rb;
-
-    //public bool trigger;
+    private Rigidbody rb;
 
     readonly int hashPunchAttack = Animator.StringToHash("PunchAttack");
     readonly int hashKickAttack = Animator.StringToHash("KickAttack");
-
     readonly int hashNextMove = Animator.StringToHash("NextMove");
-
 
     public Animation cylinderHit;
 
     private void Start()
     {
-        anim.updateMode = AnimatorUpdateMode.AnimatePhysics;
-
+        anim.updateMode = AnimatorUpdateMode.Fixed;
         anim = GetComponent<Animator>();
-
     }
 
     private void Update()
@@ -40,15 +33,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.J))
         {
             anim.SetTrigger(hashPunchAttack);
-
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
             anim.SetTrigger(hashKickAttack);
-
         }
 
-        distance = Vector3.Distance(transform.position, target.transform.position);
+        distance = Vector3.Distance(transform.position, target.position);
 
         if (distance < 20)
         {
@@ -56,42 +47,28 @@ public class PlayerController : MonoBehaviour
             targetPosition.y = transform.position.y;
             transform.LookAt(targetPosition);
         }
-
     }
 
-    public void NextMove() // called by animation event
+    public void NextMove() // Called by animation event
     {
         anim.SetTrigger(hashNextMove);
     }
 
-
-
-    void OnTriggerStay(Collider other)
-    {
-        //trigger = false;
-    }
-
-
-    void Awake()
+    private void Awake()
     {
         playerController = this;
         rb = GetComponent<Rigidbody>();
-
     }
 
-
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        //trigger = true;
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Z-Axis"); // your side-step input (could change to "Vertical")
 
-        float horizontal = Input.GetAxis("Horizontal"); //moves player horizontally
         anim.SetFloat("horizontal", horizontal);
-        rb.velocity = Vector3.MoveTowards(rb.velocity, Vector3.right * horizontal * Time.deltaTime, moveAcceleration * Time.deltaTime);
+        anim.SetFloat("step", vertical);
 
-        float step = Input.GetAxis("Z-Axis"); //side stepping code
-        anim.SetFloat("step", step);
-        rb.velocity = new Vector3(0, 0, step * moveAcceleration * Time.deltaTime);
+        Vector3 moveDirection = new Vector3(horizontal, 0f, vertical).normalized;
+        rb.linearVelocity = moveDirection * moveSpeed;
     }
-
 }
-

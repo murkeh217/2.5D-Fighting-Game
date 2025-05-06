@@ -182,16 +182,10 @@ public class HurtController : GameManager<HurtController>
 
     void OnTriggerEnter(Collider collider)
     {
-        /*if (trigger)
-        {
-            title.text = "Miss";
-            p1Hits.text = "";
-            StartCoroutine(TextState());
-        }*/
-        //Debug.Log("TriggerEntered: " + collider.gameObject.name, collider);
-
+        // Jotaro is the enemy
         if (targetChoose == "Jotaro")
         {
+            // Check if the hit is from Dio's Hands or Legs (Player)
             if (collider.CompareTag("Hands") && Input.GetKey(KeyCode.J) || collider.CompareTag("Legs") && Input.GetKey(KeyCode.K))
             {
                 switch (Mathf.Clamp(totalHits, 0, 4))
@@ -222,33 +216,35 @@ public class HurtController : GameManager<HurtController>
                         break;
                 }
 
-
+                // Apply damage to Jotaro (enemy)
                 if (targetAnim.GetCurrentAnimatorStateInfo(0).IsName(setState))
                 {
                     targetAnim.Play("Head_Hurt");
-                    p2Health.fillAmount -= 0.005f;
+                    p2Health.fillAmount -= 0.005f;  // Damage Jotaro's health
                     jotaroHealth = p2Health.fillAmount;
                     totalHits++;
                 }
                 else
                 {
                     targetAnim.Play("Body_Hurt");
-                    p2Health.fillAmount -= 0.008f;
+                    p2Health.fillAmount -= 0.008f;  // Damage Jotaro's health
                     jotaroHealth = p2Health.fillAmount;
                     totalHits++;
                 }
 
+                Debug.Log("Jotaro Hit!" + totalHits);
 
-                Debug.Log("Hit!" + totalHits);
-
+                // Update health bar color to critical if Jotaro's health is low
                 if (p2Health.fillAmount < 0.3f)
                 {
                     p2Health.color = critical;
                 }
             }
         }
+        // Dio is the player
         else
         {
+            // Check if the hit is from Jotaro's Hands or Legs (Enemy)
             if (collider.CompareTag("Hands") || collider.CompareTag("Legs"))
             {
                 switch (Mathf.Clamp(totalHits, 0, 4))
@@ -279,25 +275,25 @@ public class HurtController : GameManager<HurtController>
                         break;
                 }
 
-
+                // Apply damage to Dio (player)
                 if (targetAnim.GetCurrentAnimatorStateInfo(0).IsName(setState))
                 {
                     targetAnim.Play("Head_Hurt");
-                    p1Health.fillAmount -= 0.005f;
+                    p1Health.fillAmount -= 0.005f;  // Damage Dio's health
                     dioHealth = p1Health.fillAmount;
                     totalHits++;
                 }
                 else
                 {
                     targetAnim.Play("Body_Hurt");
-                    p1Health.fillAmount -= 0.008f;
+                    p1Health.fillAmount -= 0.008f;  // Damage Dio's health
                     dioHealth = p1Health.fillAmount;
                     totalHits++;
                 }
 
+                Debug.Log("Dio Hit!" + totalHits);
 
-                Debug.Log("Hit!" + totalHits);
-
+                // Update health bar color to critical if Dio's health is low
                 if (p1Health.fillAmount < 0.3f)
                 {
                     p1Health.color = critical;
@@ -305,7 +301,6 @@ public class HurtController : GameManager<HurtController>
             }
         }
     }
-
 
     void OnTriggerStay(Collider other)
     {
