@@ -704,3 +704,91 @@ Total: 240.339500 ms (FindLiveObjects: 2.975800 ms CreateObjectMapping: 4.097300
 Prepare: number of updated asset objects reloaded= 1
 EnvironmentDependencyValues requested are different than current active one (requested -> active):
   graphicsApiMask: 2048 -> 264192
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+Refreshing native plugins compatible for Editor in 3.94 ms, found 3 plugins.
+Unloading 334 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 334 unused Assets / (33.7 MB). Loaded Objects now: 7615.
+Memory consumption went from 436.9 MB to 403.2 MB.
+Total: 33.095000 ms (FindLiveObjects: 1.179000 ms CreateObjectMapping: 0.634100 ms MarkObjects: 10.417300 ms  DeleteObjects: 20.558100 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+EnvironmentDependencyValues requested are different than current active one (requested -> active):
+  graphicsApiMask: 2048 -> 264192
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+Refreshing native plugins compatible for Editor in 3.48 ms, found 3 plugins.
+Unloading 334 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 334 unused Assets / (37.4 MB). Loaded Objects now: 7615.
+Memory consumption went from 437.1 MB to 399.7 MB.
+Total: 39.285600 ms (FindLiveObjects: 1.099400 ms CreateObjectMapping: 0.380700 ms MarkObjects: 10.309400 ms  DeleteObjects: 27.122200 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+EnvironmentDependencyValues requested are different than current active one (requested -> active):
+  graphicsApiMask: 2048 -> 264192
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+Refreshing native plugins compatible for Editor in 7.31 ms, found 3 plugins.
+Unloading 35 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 35 unused Assets / (1.8 MB). Loaded Objects now: 7615.
+Memory consumption went from 356.8 MB to 355.1 MB.
+Total: 14.698800 ms (FindLiveObjects: 1.165900 ms CreateObjectMapping: 0.539300 ms MarkObjects: 11.158100 ms  DeleteObjects: 1.449000 ms)
+
+Prepare: number of updated asset objects reloaded= 174
+EnvironmentDependencyValues requested are different than current active one (requested -> active):
+  buildTarget: platform 20, subtarget 4, extendedPlatform 0 -> platform 20, subtarget 0, extendedPlatform 0
+  graphicsApiMask: 2048 -> 264192
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+WARNING: Shader Unsupported: 'Hidden/Universal Render Pipeline/Terrain/Lit (Base Pass)' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Universal Render Pipeline/Terrain/Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Refreshing native plugins compatible for Editor in 3.66 ms, found 3 plugins.
+Unloading 442 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 337 unused Assets / (33.8 MB). Loaded Objects now: 7546.
+Memory consumption went from 427.1 MB to 393.3 MB.
+Total: 30.018600 ms (FindLiveObjects: 2.235500 ms CreateObjectMapping: 0.844000 ms MarkObjects: 10.504400 ms  DeleteObjects: 16.026100 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+EnvironmentDependencyValues requested are different than current active one (requested -> active):
+  buildTarget: platform 20, subtarget 4, extendedPlatform 0 -> platform 20, subtarget 0, extendedPlatform 0
+  graphicsApiMask: 2048 -> 264192
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+Refreshing native plugins compatible for Editor in 6.21 ms, found 3 plugins.
+Unloading 36 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 36 unused Assets / (1.8 MB). Loaded Objects now: 7548.
+Memory consumption went from 346.9 MB to 345.1 MB.
+Total: 15.285300 ms (FindLiveObjects: 1.116200 ms CreateObjectMapping: 0.821200 ms MarkObjects: 11.740100 ms  DeleteObjects: 1.310800 ms)
+
+Prepare: number of updated asset objects reloaded= 108
+EnvironmentDependencyValues requested are different than current active one (requested -> active):
+  buildTarget: platform 20, subtarget 3, extendedPlatform 0 -> platform 20, subtarget 0, extendedPlatform 0
+  graphicsApiMask: 2048 -> 264192
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+WARNING: Shader Unsupported: 'Hidden/Universal Render Pipeline/Terrain/Lit (Base Pass)' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Universal Render Pipeline/Terrain/Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Refreshing native plugins compatible for Editor in 5.99 ms, found 3 plugins.
+Unloading 443 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 337 unused Assets / (33.8 MB). Loaded Objects now: 7546.
+Memory consumption went from 427.5 MB to 393.7 MB.
+Total: 33.229500 ms (FindLiveObjects: 1.412600 ms CreateObjectMapping: 0.658600 ms MarkObjects: 10.017300 ms  DeleteObjects: 20.776900 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+EnvironmentDependencyValues requested are different than current active one (requested -> active):
+  buildTarget: platform 20, subtarget 3, extendedPlatform 0 -> platform 20, subtarget 0, extendedPlatform 0
+  graphicsApiMask: 2048 -> 264192
