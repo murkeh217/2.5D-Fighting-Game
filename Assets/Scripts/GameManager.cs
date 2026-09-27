@@ -3,6 +3,8 @@
 public class GameManager<T> : MonoBehaviour where T : Component
 {
     private static T instance;
+
+    [System.Obsolete]
     public static T Instance
     {
         get

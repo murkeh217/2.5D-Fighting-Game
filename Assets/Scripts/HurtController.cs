@@ -1,4 +1,4 @@
-﻿using Cinemachine;
+﻿
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,7 +23,8 @@ public class HurtController : GameManager<HurtController>
     public Text p2Hits;
     public Text title;
 
-    public CinemachineVirtualCamera vcam = null;
+    [System.Obsolete]
+    public Unity.Cinemachine.CinemachineVirtualCamera vcam = null;
 
     public GameObject targetPlayer;
     //public GameObject yellowPlayer;
@@ -107,6 +108,8 @@ public class HurtController : GameManager<HurtController>
     {
 
     }
+
+    [System.Obsolete]
     void Update()
     {
         /*distance = Vector3.Distance(transform.position, target.transform.position);
@@ -167,7 +170,8 @@ public class HurtController : GameManager<HurtController>
     }
 
     //needed to be overrided
-    override public void Awake()
+    [System.Obsolete]
+    public override void Awake()
     {
         //hurtController = this;
         vcam.enabled = false;
@@ -307,6 +311,7 @@ public class HurtController : GameManager<HurtController>
         trigger = false;
     }
 
+    [System.Obsolete]
     void OnTriggerExit(Collider other)
     {
         if (targetChoose == "Jotaro")
